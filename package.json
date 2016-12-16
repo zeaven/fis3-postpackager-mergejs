@@ -1,0 +1,16 @@
+{
+  "name": "fis3-postpackager-mergejs",
+  "version": "1.0.5",
+  "description": "merge backen reuqire js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fis3",
+    "backen",
+    "loader"
+  ],
+  "author": "zeaven",
+  "license": "ISC"
+}
