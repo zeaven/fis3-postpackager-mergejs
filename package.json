@@ -1,6 +1,6 @@
 {
   "name": "fis3-postpackager-mergejs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "merge backen reuqire js",
   "main": "index.js",
   "scripts": {
@@ -12,5 +12,9 @@
     "loader"
   ],
   "author": "zeaven",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeaven/fis3-postpackager-mergejs.git"
+  },
 }
