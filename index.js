@@ -66,7 +66,7 @@ function mergeContent(ret, file, requires) {
 		if (config.debug) {
 			content += '\n/**\n * import from '+ filePath + '\n */';
 		}
-		let reuqireFile = getRequireFile(ret.src, filePath, file);
+		let requireFile = getRequireFile(ret.src, filePath, file);
 		if (!requireFile) {
 			throw new Error('file not found[' + filePath + ']');
 		}
