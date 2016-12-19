@@ -61,12 +61,16 @@ function createAllInOne(ret, file, allContent) {
 }
 
 function mergeContent(ret, file, requires) {
-	var content = '/**\n * merge by fis3-postpackager-mergejs\n * author:zeaven\n */\n';
+	let content = '/**\n * merge by fis3-postpackager-mergejs\n * author:zeaven\n */\n';
 	fis.util.map(requires, function (i, filePath) {
 		if (config.debug) {
 			content += '\n/**\n * import from '+ filePath + '\n */';
 		}
-		content += '\n' + getRequireFile(ret.src, filePath, file).getContent();
+		let reuqireFile = getRequireFile(ret.src, filePath, file);
+		if (!requireFile) {
+			throw new Error('file not found[' + filePath + ']');
+		}
+		content += '\n' + requireFile.getContent();
 	});
 	return content;
 }
