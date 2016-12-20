@@ -39,7 +39,7 @@ module.exports = function (ret, conf, settings, opt) {
 };
 
 function findRequires(content) {
-	re = /require\('([^\)]*)'\)/gi;
+	re = /require\(['"]?([^\)]*)['"]?\)/gi;
 	let result = [];
 	let match;
 
