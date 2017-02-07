@@ -39,7 +39,7 @@ module.exports = function (ret, conf, settings, opt) {
 };
 
 function findRequires(content) {
-	re = /require\(['"]?([^\)'"]*)['"]?\)/gi;
+	re = /@require\(['"]?([^\)'"]*)['"]?\)/gi;
 	let result = [];
 	let match;
 
@@ -78,7 +78,8 @@ function mergeContent(ret, file, requires) {
 function insertAllInOne(content, file) {
 	let folder = file.subdirname.replace('components', 'js') + '/';
 	let onePath = '<script src="{{v \'' + folder + file.filename + '.bundle.js\'}}"></script>';
-	content = content.replace(/<!--REQUIRE_PLACEHOLDER-->/, onePath);
+	content = content.replace(/<! *--REQUIRE_PLACEHOLDER *-->/, onePath);
+	content = content.replace(/\<!\-\-\s*\@[^\>]*\-\-\>/gi, '');
 	file.setContent(content);
 }
 /**
