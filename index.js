@@ -62,23 +62,28 @@ function createAllInOne(ret, file, allContent) {
 
 function mergeContent(ret, file, requires) {
 	let content = '/**\n * merge by fis3-postpackager-mergejs\n * author:zeaven\n */\n';
+	let lines = [];
 	fis.util.map(requires, function (i, filePath) {
+		let text = '';
 		if (config.debug) {
-			content += '\n/**\n * import from '+ filePath + '\n */';
+			text += '\n/**\n * import from '+ filePath + '\n */';
 		}
 		let requireFile = getRequireFile(ret.src, filePath, file);
 		if (!requireFile) {
 			throw new Error('file not found[' + filePath + ']');
 		}
-		content += '\n' + requireFile.getContent();
+		text += '\n' + requireFile.getContent();
+		lines.push(text);
 	});
+	content = lines.join((new Array(100).fill('\n')).join(''));
 	return content;
 }
 
 function insertAllInOne(content, file) {
 	let folder = file.subdirname.replace('components', 'js') + '/';
-	let onePath = '<script src="{{v \'' + folder + file.filename + '.bundle.js\'}}"></script>';
-	content = content.replace(/<! *--REQUIRE_PLACEHOLDER *-->/, onePath);
+	let onePath = folder + file.filename + '.bundle.js';
+	content = content.replace(/<! *--REQUIRE_PLACEHOLDER *-->/g, '<script src="{{v \'' + onePath + '\'}}"></script>');
+	content = content.replace(/<! *--REQUIRE_PATH *-->/g, onePath);
 	content = content.replace(/\<!\-\-\s*\@[^\>]*\-\-\>/gi, '');
 	file.setContent(content);
 }
