@@ -75,7 +75,7 @@ function mergeContent(ret, file, requires) {
 		text += '\n' + requireFile.getContent();
 		lines.push(text);
 	});
-	content = lines.join((new Array(100).fill('\n')).join(''));
+	content = lines.join((new Array(10).fill('\n')).join(''));
 	return content;
 }
 
