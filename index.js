@@ -82,7 +82,7 @@ function mergeContent(ret, file, requires) {
 function insertAllInOne(content, file) {
 	let folder = file.subdirname.replace('components', 'js') + '/';
 	let onePath = folder + file.filename + '.bundle.js';
-	content = content.replace(/<! *--REQUIRE_PLACEHOLDER *-->/g, '<script src="{{v \'' + onePath + '\'}}"></script>');
+	content = content.replace(/<! *--REQUIRE_PLACEHOLDER *-->/g, '<script src="{{v \'' + onePath + '\'}}" crossorigin></script>');
 	content = content.replace(/<! *--REQUIRE_PATH *-->/g, onePath);
 	content = content.replace(/\<!\-\-\s*\@[^\>]*\-\-\>/gi, '');
 	file.setContent(content);
